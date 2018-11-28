@@ -1,0 +1,107 @@
+/* https://www.w3schools.com/css/tryit.asp?filename=trycss_table_fancy */
+.listSanPham {
+	margin: 50px auto;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+/* thêm border và padding cho td và th */
+.listSanPham td, .listSanPham th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+/* Link sản phẩm */
+.noPadding {
+    padding: 0 0 0 10px;
+    line-height: 2.5em;
+}
+.listSanPham td a {
+    display: block;
+    padding: 0;
+}
+.listSanPham td a:hover {
+    text-decoration: underline;
+}
+
+/* Cột Giá tiền canh lề phải */
+.alignRight {
+    text-align: right;
+    padding-right: 30px;  
+}
+
+/* Canh giữa cho cột stt và th */
+.listSanPham tr td:first-child, .listSanPham tr th {
+	text-align: center;
+}
+
+/* những tr chẵn sẽ có màu khác */
+.listSanPham tr:nth-of-type(even) {background-color: #f2f2f2;}
+.listSanPham tr:not(:last-child):hover {background-color: #ddd;}
+
+/* Last child là dòng tổng tiền */
+.listSanPham tr:last-child { background-color: #aaa; }
+
+.listSanPham th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Số lượng */
+.listSanPham .soluong {
+    text-align: center;
+}
+.listSanPham .soluong button {
+    width: 2em;
+    height: 2em;
+    font-size: 1em;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: rgb(182, 211, 206); 
+}
+.listSanPham .soluong input {
+    text-align: center;
+    width: 2.5em;
+    height: 2em;
+}
+
+/* Nút xóa */
+.fa-trash {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    color: #999;
+    cursor: pointer;
+}
+
+.fa-trash:hover {
+    color: red;
+    transform: scale(1.5)
+}
+
+/* Nút thanh toán */
+.thanhtoan {
+    padding: 10px 15px;
+    font-size: 1.5em;
+    font-weight: bold;
+    /* border: none; */
+    background-color: rgb(197, 223, 199);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* Hiệu ứng bóng đổ hover */
+.boxShadow {
+    transition-duration: .2s;
+}
+.boxShadow:hover {
+    box-shadow: 4px 8px 15px #888888;
+    background-color: #4CAF50; 
+}
+.boxShadow:active {
+    box-shadow: none;
+    transition-duration: 0s;    
+}

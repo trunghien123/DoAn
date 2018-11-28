@@ -1,0 +1,186 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body,
+html {
+    min-width: 1024px;
+    
+}
+
+a {
+    text-decoration: none;
+    color: #222;
+}
+
+.clear {
+    clear: both;
+    line-height: 0;
+}
+
+/* căn giữa section, và set độ rộng lớn nhất là 1200px */
+section {
+    max-width: 1205px;
+    margin: 0 auto;
+}
+
+hr {
+    color: #ddd;
+    background-color: #ddd;
+    border-top: 1px solid #ddd;
+}
+
+.flexContain {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+/* Use for auto clear float */
+/* ====== https://css-tricks.com/snippets/css/clear-fix/ ======== */
+.group:before,
+.group:after {
+    content: "";
+    display: table;
+}
+
+.group:after {
+    clear: both;
+}
+
+.group {
+    zoom: 1;
+    /* For IE 6/7 (trigger hasLayout) */
+}
+
+/* ===== End clear float ====== */
+
+#goto-top-page {
+    bottom: 15px;
+    position: fixed;
+    right: 15px;
+    z-index: 9;
+    /* display: none; */
+    background: rgba(0, 0, 0, .6);
+    color: #fff;
+    font-size: 18px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    line-height: 29px;
+    text-align: center;
+    cursor: pointer;
+    font-family: Consolas, monospace;
+}
+
+@keyframes sonar {
+    0% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1)
+    }
+
+    100% {
+        -webkit-transform: scale(3);
+        transform: scale(3);
+        opacity: 0
+    }
+}
+
+/* ========= ScrollBar ============ */
+::-webkit-scrollbar {
+    width: 0px;
+    height: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: #444;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #999;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ccc;
+}
+/* ==================== css thêm , chưa sử dụng ========================= */
+/* tooltip https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_copy_clipboard2 */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 140px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -75px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* animation ping from thegioididong */
+.dot {
+    width: 10px;
+    height: 10px;
+    background-color: #f33;
+    border-radius: 100%;
+    display: block;
+}
+
+.dot .ping {
+    border: 1px solid #f33;
+    width: 10px;
+    height: 10px;
+    opacity: 1;
+    background-color: rgba(238, 46, 36, .2);
+    border-radius: 100%;
+    -webkit-animation-duration: 1.25s;
+    animation-duration: 1.25s;
+    -webkit-animation-name: sonar;
+    animation-name: sonar;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    display: block;
+    margin: -1px 0 0 -1px;
+}
