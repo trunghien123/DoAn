@@ -57,7 +57,8 @@
                     <p>
                 </div>
                 <div class="info-right">
-                    <iframe width="100%" height="450" frameborder="0" style="border:0"src="https://www.google.com/maps/embed/v1/place?q=dai+hoc+sai+gon&key=AIzaSyD4iE2xVSpkLLOXoyqT-RuPwURN3ddScAI" allowfullscreen></iframe>
+                    <!-- <iframe width="100%" height="450" frameborder="0" style="border:0"src="https://www.google.com/maps/embed/v1/place?q=dai+hoc+sai+gon&key=AIzaSyD4iE2xVSpkLLOXoyqT-RuPwURN3ddScAI" allowfullscreen></iframe> -->
+                    <div style="width: 100%"><iframe width="100%" height="450" src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=dai+hoc+sai+gon&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.maps.ie/create-google-map/">Add map to website</a></iframe></div><br />
                 </div>
             </div>
             <div class="lienhe-info">
@@ -65,32 +66,34 @@
                  <div class="guithongtin">
                     <p style="font-size: 22px; color: gray">Gửi thông tin liên lạc cho chúng tôi: </p>
                     <hr/>
-                    <table cellspacing="10px">
-                        <tr>
-                            <td>Họ và tên :</td>
-                            <td><input type="text" name="ht" size="40" maxlength="40" placeholder="Họ tên"></td>
-                        </tr>
-                        <tr>
-                            <td>Điện thoại liên hệ : </td>
-                            <td><input type="text" name="dtlh" size="40" maxlength="10" placeholder="Điện thoại"></td>
-                        </tr>
-                        <tr>
-                            <td>Địa chỉ Email :</td>
-                            <td><input type="Email" name="em" size="40" placeholder="Email"></td>
-                        </tr>
-                        <tr>
-                            <td>Tiêu đề : </td>
-                            <td><input type="text" name="tde" size="40" maxlength="100" placeholder="Tiêu đề">
-                        </tr>
-                        <tr>
-                            <td>Nội dung :</td>
-                            <td><textarea name="nd" rows="5" cols="43px" maxlength="500" wrap="physical" placeholder="Nội dung liên hệ"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><button>Gửi thông tin liên hệ</button></td>
-                        </tr>
-                    </table>
+                    <form>
+                        <table cellspacing="10px">
+                            <tr>
+                                <td>Họ và tên :</td>
+                                <td><input type="text" name="ht" size="40" maxlength="40" placeholder="Họ tên" autocomplete="off"></td>
+                            </tr>
+                            <tr>
+                                <td>Điện thoại liên hệ : </td>
+                                <td><input type="text" name="dtlh" size="40" maxlength="10" placeholder="Điện thoại"></td>
+                            </tr>
+                            <tr>
+                                <td>Địa chỉ Email :</td>
+                                <td><input type="Email" name="em" size="40" placeholder="Email" autocomplete="off"></td>
+                            </tr>
+                            <tr>
+                                <td>Tiêu đề : </td>
+                                <td><input type="text" name="tde" size="40" maxlength="100" placeholder="Tiêu đề">
+                            </tr>
+                            <tr>
+                                <td>Nội dung :</td>
+                                <td><textarea name="nd" rows="5" cols="43px" maxlength="500" wrap="physical" placeholder="Nội dung liên hệ"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><button>Gửi thông tin liên hệ</button></td>
+                            </tr>
+                        </table>
+                    </form>
                 </div> 
                 <div class="thongtinnhom">
                     <p style="font-size: 22px; color: gray">Thông tin thành viên nhóm: </p>
