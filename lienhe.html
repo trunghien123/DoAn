@@ -22,14 +22,7 @@
 
     <!-- js -->
 	<script src="js/dungchung.js"></script>
-    <script>
-        window.onload = function () {
-            // thêm tags (từ khóa) vào khung tìm kiếm
-            var tags = ["Samsung", "iPhone", "Huawei", "Oppo", "Mobi"];
-            for (var t of tags) addTags(t, "index.html?search=" + t);
-            setupEventTaiKhoan();
-        }
-    </script>
+    <script src="js/lienhe.js"></script>
 
 </head>
 
@@ -66,31 +59,31 @@
                  <div class="guithongtin">
                     <p style="font-size: 22px; color: gray">Gửi thông tin liên lạc cho chúng tôi: </p>
                     <hr/>
-                    <form>
+                    <form name="formlh" action="" method="post" onsubmit="return nguoidung()">
                         <table cellspacing="10px">
                             <tr>
                                 <td>Họ và tên :</td>
-                                <td><input type="text" name="ht" size="40" maxlength="40" placeholder="Họ tên" autocomplete="off"></td>
+                                <td><input type="text" name="ht" size="40" maxlength="40" placeholder="Họ tên" autocomplete="off" required></td>
                             </tr>
                             <tr>
                                 <td>Điện thoại liên hệ : </td>
-                                <td><input type="text" name="dtlh" size="40" maxlength="10" placeholder="Điện thoại"></td>
+                                <td><input type="text" name="sdt" size="40" maxlength="10" placeholder="Điện thoại" required></td>
                             </tr>
                             <tr>
                                 <td>Địa chỉ Email :</td>
-                                <td><input type="Email" name="em" size="40" placeholder="Email" autocomplete="off"></td>
+                                <td><input type="Email" name="em" size="40" placeholder="Email" autocomplete="off" onkeyup="Email" required></td>
                             </tr>
                             <tr>
                                 <td>Tiêu đề : </td>
-                                <td><input type="text" name="tde" size="40" maxlength="100" placeholder="Tiêu đề">
+                                <td><input type="text" name="tde" size="40" maxlength="100" placeholder="Tiêu đề" required>
                             </tr>
                             <tr>
                                 <td>Nội dung :</td>
-                                <td><textarea name="nd" rows="5" cols="43px" maxlength="500" wrap="physical" placeholder="Nội dung liên hệ"></textarea></td>
+                                <td><textarea name="nd" rows="5" cols="43px" maxlength="500" wrap="physical" placeholder="Nội dung liên hệ" required></textarea></td>
                             </tr>
                             <tr>
                                 <td></td>
-                                <td><button>Gửi thông tin liên hệ</button></td>
+                                <td><button type="submit">Gửi thông tin liên hệ</button></td>
                             </tr>
                         </table>
                     </form>
