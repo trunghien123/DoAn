@@ -25,24 +25,32 @@ function copyObject(o) {
     return JSON.parse(JSON.stringify(o));
 }
 
-// ============================= Thời gian ===========================
-function getTimeNow() {
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth() + 1; //January is 0!
-    var yyyy = today.getFullYear();
+// ============== ALert Box ===============
+// div có id alert được tạo trong hàm addFooter
+function addAlertBox(text, bgcolor, textcolor, time) {
+    var al = document.getElementById('alert');
+    al.childNodes[0].nodeValue = text;
+    al.style.backgroundColor = bgcolor;
+    al.style.opacity = 1;
+    al.style.zIndex = 200;
 
-    var hh = today.getHours();
-    var mi = today.getMinutes();
-    var se = today.getSeconds();
-
-    if (dd < 10) dd = '0' + dd;
-    if (mm < 10) mm = '0' + mm;
-    var today = dd + '/' + mm + '/' + yyyy + ' - ' + hh + ':' + mi + ':' + se;
-    return today;
+    if (textcolor) al.style.color = textcolor;
+    if(time) 
+    setTimeout(function(){
+        al.style.opacity = 0;
+        al.style.zIndex = 0;
+    }, time);
+}
+function addEventCloseAlertButton() {
+    document.getElementById('closebtn')
+    .addEventListener('mouseover', (event) => {
+        // event.target.parentElement.style.display = "none";
+        event.target.parentElement.style.opacity = 0;
+        event.target.parentElement.style.zIndex = 0;
+    });
 }
 
-// ============================== Cart Number =========================
+// ================ Cart Number + Thêm vào Giỏ hàng ======================
 function animateCartNumber() {
     // Hiệu ứng cho icon giỏ hàng
     var cn = document.getElementsByClassName('cart-number')[0];
@@ -54,6 +62,42 @@ function animateCartNumber() {
         cn.style.backgroundColor = 'transparent';
         cn.style.color = 'red';
     }, 1200);
+}
+
+function themVaoGioHang(tenSanPham) {
+    var user = getCurrentUser();
+    if(!user) {
+        alert('Bạn cần đăng nhập để mua hàng !');
+        showTaiKhoan(true);
+        return;
+    }
+    var t = new Date();
+    var daCoSanPham = false;;
+
+    for(var i = 0; i < user.products.length; i++) { // check trùng sản phẩm
+        if(user.products[i].name == tenSanPham) {
+            user.products[i].soluong++;
+            daCoSanPham = true;
+            break;
+        }
+    }
+    
+    if(!daCoSanPham){ // nếu không trùng thì mới thêm sản phẩm vào user.products
+        user.products.push({
+            "name": tenSanPham,
+            "soluong": 1,
+            "date": t
+        });
+    }
+
+    animateCartNumber();
+    addAlertBox('Đã thêm '+ tenSanPham +' vào giỏ.', '#14ba48', '#000', 3500);
+    
+    setCurrentUser(user); // cập nhật giỏ hàng cho user hiện tại
+    updateListUser(user); // cập nhật list user
+    capNhat_ThongTin_CurrentUser(); // cập nhật giỏ hàng
+
+    // alert('Sản phẩm đã được thêm vào giỏ hàng của bạn (' + user.username +')');
 }
 
 // ============================== TÀI KHOẢN ============================
@@ -82,11 +126,11 @@ function setListUser(l) {
 }
 
 // Sau khi chỉnh sửa 1 user 'u' thì cần hàm này để cập nhật lại vào ListUser
-function updateListUser(u) {
+function updateListUser(u, newData) {
     var list = getListUser();
     for (var i = 0; i < list.length; i++) {
         if (equalUser(u, list[i])) {
-            list[i] = u;
+            list[i] = (newData?newData:u);
         }
     }
     setListUser(list);
@@ -98,10 +142,10 @@ function logIn(form) {
     var pass = form.pass.value;
     var newUser = new User(name, pass);
 
-    // Lấy dữ liệu từ localstorage
+    // Lấy dữ liệu từ danh sách người dùng localstorage
     var listUser = getListUser();
 
-    // Kiểm tra xem dữ liệu form có khớp với dữ liệu localstorage ko
+    // Kiểm tra xem dữ liệu form có khớp với người dùng nào trong danh sách ko
     for (var u of listUser) {
         if (equalUser(newUser, u)) {
             setCurrentUser(u);
@@ -115,6 +159,7 @@ function logIn(form) {
 
     // Trả về thông báo nếu không khớp
     alert('Nhập sai tên hoặc mật khẩu !!!');
+    form.username.focus();
     return false;
 }
 
@@ -165,19 +210,18 @@ function showTaiKhoan(show) {
 // Hàm này chạy khi ấn vào nút tài khoản trên header
 function checkTaiKhoan() {
     if (getCurrentUser()) {
-        if (window.confirm('Bạn muốn đăng xuất ?')) {
-            logOut();
-            location.reload();
-        }
+        // if (window.confirm('Bạn muốn đăng xuất ?')) {
+        //     logOut();
+        //     location.reload();
+        // }
+        // window.location.assign('nguoidung.html')
 
     } else {
         showTaiKhoan(true);
     }
-
-
 }
 
-// Tạo event cho form tài khoản
+// Tạo event, hiệu ứng cho form tài khoản
 function setupEventTaiKhoan() {
     var taikhoan = document.getElementsByClassName('taikhoan')[0];
     var list = taikhoan.getElementsByTagName('input');
@@ -236,11 +280,12 @@ function setupEventTaiKhoan() {
     // Đoạn code tạo event trên được chuyển về js thuần từ code jquery
     // Code jquery cho phần tài khoản được lưu ở cuối file này
 
-    capNhatGioHang(); // Cập nhật mỗi khi load xong trang, hàm setupEventTaiKhoan() phải luôn được đặt trong window.onload
+    capNhat_ThongTin_CurrentUser(); // Cập nhật mỗi khi load xong trang, hàm setupEventTaiKhoan() phải luôn được đặt trong window.onload
+    addEventCloseAlertButton(); // TẠo event mỗi khi load xong trang
 }
 
 // Cập nhật số lượng hàng trong giỏ hàng + Tên current user
-function capNhatGioHang() {
+function capNhat_ThongTin_CurrentUser() {
     var u = getCurrentUser();
     if (u) {
         // Cập nhật số lượng hàng vào header
@@ -248,9 +293,13 @@ function capNhatGioHang() {
         // Cập nhật tên người dùng
         document.getElementsByClassName('member')[0]
             .getElementsByTagName('a')[0].childNodes[2].nodeValue = u.username;
+        // bỏ class hide của menu người dùng
+        document.getElementsByClassName('menuMember')[0]
+                .classList.remove('hide');
     }
 }
 
+// tính tổng số lượng các sản phẩm của user u truyền vào
 function getTongSoLuongSanPhamTrongGioHang(u) {
     var soluong = 0;
     for (var p of u.products) {
@@ -259,6 +308,7 @@ function getTongSoLuongSanPhamTrongGioHang(u) {
     return soluong;
 }
 
+// lấy số lương của sản phẩm NÀO ĐÓ của user NÀO ĐÓ được truyền vào
 function getSoLuongSanPhamTrongUser(tenSanPham, user) {
     for (var p of user.products) {
         if(p.name == tenSanPham)
@@ -413,16 +463,12 @@ function addTopNav() {
             </div> <!-- End Social Topnav -->
 
             <ul class="top-nav-quicklink flexContain">
+                <li><a href="index.html">Trang chủ</a></li>
                 <li><a href="tintuc.html">Tin tức</a></li>
-                <li>|</li>
                 <li><a href="tuyendung.html">Tuyển dụng</a></li>
-                <li>|</li>
-                <li><a href="gioithieu.html">Giới thiệu</a></li>
-                <li>|</li>
+                <!-- <li><a href="gioithieu.html">Giới thiệu</a></li> -->
                 <li><a href="trungtambaohanh.html">Trung tâm bảo hành</a></li>
-                <li>|</li>
                 <li><a href="lienhe.html">Liên hệ</a></li>
-                <li>|</li>
             </ul> <!-- End Quick link -->
         </section><!-- End Section -->
     </div><!-- End Top Nav  -->`);
@@ -434,7 +480,7 @@ function addHeader() {
 	<div class="header group">
         <div class="logo">
             <a href="index.html">
-                <img src="img/logo.jpg" alt="">
+                <img src="img/logo.jpg" alt="Trang chủ Smartphone Store" title="Trang chủ Smartphone Store">
             </a>
         </div> <!-- End Logo -->
 
@@ -460,6 +506,10 @@ function addHeader() {
                         <i class="fa fa-user"></i>
                         Tài khoản
                     </a>
+                    <div class="menuMember hide">
+                        <a href="nguoidung.html">Trang người dùng</a>
+                        <a onclick="if(window.confirm('Xác nhận đăng xuất ?')) logOut();">Đăng xuất</a>
+                    </div>
 
                 </div> <!-- End Member -->
 
@@ -471,22 +521,29 @@ function addHeader() {
                     </a>
                 </div> <!-- End Cart -->
 
-                <div class="check-order">
+                <!--<div class="check-order">
                     <a>
                         <i class="fa fa-truck"></i>
                         <span>Đơn hàng</span>
                     </a>
-                </div> <!-- End Check Order -->
+                </div> -->
             </div><!-- End Tools Member -->
         </div> <!-- End Content -->
     </div> <!-- End Header -->`)
 }
 
 function addFooter() {
-    document.write(`<div class="copy-right">
-                        <p><a href="index.html">SmartPhone Store</a> - All rights reserved © 2018 - Designed by
-                            <span style="color: #eee; font-weight: bold">H-group</span></p>
-                    </div>`);
+    document.write(`
+    <!-- ============== Alert Box ============= -->
+    <div id="alert">
+        <span id="closebtn">&otimes;</span>
+    </div>
+
+    <!-- ============== Footer ============= -->
+    <div class="copy-right">
+        <p><a href="index.html">SmartPhone Store</a> - All rights reserved © 2018 - Designed by
+            <span style="color: #eee; font-weight: bold">H-group</span></p>
+    </div>`);
 }
 
 // Thêm contain Taikhoan

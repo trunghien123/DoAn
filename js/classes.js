@@ -1,4 +1,4 @@
-function User(username, pass, ho, ten, email, products) {
+function User(username, pass, ho, ten, email, products, donhang) {
 	this.ho = ho || '';
 	this.ten = ten || '';
 	this.email = email || '';
@@ -6,6 +6,7 @@ function User(username, pass, ho, ten, email, products) {
 	this.username = username;
 	this.pass = pass;
 	this.products = products || [];
+	this.donhang = donhang || [];
 }
 
 function equalUser(u1, u2) {
@@ -55,7 +56,7 @@ function Product(img, name, price, star, rateCount, promo) {
 	this.promo = promo;
 }
 
-function addToWeb(p, id) {
+function addToWeb(p, ele, returnString) {
 	// Chuyển star sang dạng tag html
 	var rating = "";
 	if (p.rateCount > 0) {
@@ -83,7 +84,7 @@ function addToWeb(p, id) {
 
 	// Cho mọi thứ vào tag <li>... </li>
 	var newLi =
-	`<li>
+	`<li class="sanPham">
 		<a href="` + chitietSp + `">
 			<img src=` + p.img + ` alt="">
 			<h3>` + p.name + `</h3>
@@ -94,10 +95,18 @@ function addToWeb(p, id) {
 				` + rating + `
 			</div>
 			` + (p.promo && p.promo.toWeb()) + `
+			<div class="tooltip">
+				<button class="themvaogio" onclick="themVaoGioHang('`+p.name+`'); return false;">
+					<span class="tooltiptext" style="font-size: 15px;">Thêm vào giỏ</span>
+					+
+				</button>
+			</div>
 		</a>
 	</li>`;
 
-	// Thêm tag <li> vừa tạo vào <ul> homeproduct
-	var products = document.getElementById(id || 'products');
+	if(returnString) return newLi;
+
+	// Thêm tag <li> vừa tạo vào <ul> homeproduct (mặc định) , hoặc tag ele truyền vào
+	var products = ele || document.getElementById('products');
 	products.innerHTML += newLi;
 }

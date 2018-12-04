@@ -7,6 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 	<title>Thế giới điện thoại</title>
+	<link rel="shortcut icon" href="img/favicon.ico" />
 
 	<!-- Load font awesome icons -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -18,6 +19,9 @@
 	<script src="js/Jquery/Jquery.min.js"></script>
 	<script src="js/owlcarousel/owl.carousel.min.js"></script>
 
+	<!-- tidio - live chat -->
+	<script src="//code.tidio.co/bfiiplaaohclhqwes5xivoizqkq56guu.js"></script>
+
 	<!-- our files -->
 	<!-- css -->
 	<link rel="stylesheet" href="css/style.css">
@@ -25,6 +29,7 @@
 	<link rel="stylesheet" href="css/header.css">
 	<link rel="stylesheet" href="css/banner.css">
 	<link rel="stylesheet" href="css/taikhoan.css">
+	<link rel="stylesheet" href="css/trangchu.css">
 	<link rel="stylesheet" href="css/home_products.css">
 	<link rel="stylesheet" href="css/pagination_phantrang.css">
 	<link rel="stylesheet" href="css/footer.css">
@@ -46,9 +51,7 @@
 			<div class="owl-carousel owl-theme"></div>
 		</div> <!-- End Banner -->
 
-		<section class="flexContain">
-			<img src="img/banners/blackFriday.gif" alt="" style="width: 100%;">
-		</section> <!-- End BlackFriday  -->
+		<img src="img/banners/blackFriday.gif" alt="" style="width: 100%;">
 
 		<br>
 		<div class="companyMenu group flexContain"></div>
@@ -84,7 +87,8 @@
 		</div> <!-- Những bộ lọc đã chọn -->
 		<hr>
 
-		<div class="contain-products">
+		<!-- Mặc định mới vào trang sẽ ẩn đi, nế có filter thì mới hiện lên -->
+		<div class="contain-products" style="display:none"> 
 			<div class="filterName">
 				<input type="text" placeholder="Lọc trong trang theo tên..." onkeyup="filterProductsName(this)">
 			</div> <!-- End FilterName -->
@@ -98,6 +102,9 @@
 
 			<div class="pagination"></div>
 		</div>
+
+		<!-- Div hiển thị khung sp hot, khuyến mãi, mới ra mắt ... -->
+		<div class="contain-khungSanPham" ></div>
 
 	</section> <!-- End Section -->
 

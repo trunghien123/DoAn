@@ -13,9 +13,12 @@
 		}
 		.social-top-nav a {
 			display: table-cell;
-			padding: 8px;
+			padding: 5px;
 			text-align: center;
 			font-size: 13px;
+			height: 1.5em;
+			width: 1.5em;
+			line-height: 1.5em;
 			color: gray;
 			background-color: #f1f1f1;
 		}
@@ -33,16 +36,18 @@
 		}
 		.top-nav-quicklink li {
 			display: inline-block;
-			font-size: 85%;
-			padding: 5px;
+			font-size: .9em;
 			color: gray;
 		}
 		.top-nav-quicklink li a {
 			display: block;
 			color: gray;
+			padding: 6px 15px;
+			transition-duration: .2s;
 		}
 		.top-nav-quicklink li a:hover {
-			color: black;
+			color: red;
+			padding: 10px 15px 2px;
 		}
 	/* ======= End quick link ======= */
 /* ======= End Top navigation ======= */

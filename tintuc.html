@@ -6,10 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tin tức - Thế giới điện thoại</title>
+    <link rel="shortcut icon" href="img/favicon.ico" />
 
     <!-- Load font awesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         crossorigin="anonymous">
+
+	<!-- tidio - live chat -->
+	<script src="//code.tidio.co/bfiiplaaohclhqwes5xivoizqkq56guu.js"></script>
 
     <!-- our files -->
     <!-- css -->
@@ -40,32 +44,46 @@
         <script> addHeader(); </script>
 
         <div class="body-tintuc">
-            
-             <script>
-                var thongtin = [
-                    ["http://doanhnghiepvn.vn/cong-nghe/danh-gia-smartphone-chip-s660-ram-8-gb-gia-6-99-trieu-tai-viet-nam/2018112603315443","Đánh giá smartphone chip S660, RAM 8 GB, giá 6,99 triệu tại Việt Nam","Doanh ngiệp &emsp;3 giờ"],
-                    ["https://thanhnien.vn/cong-nghe/kham-pha-smartphone-man-hinh-gap-duoc-dau-tien-cua-samsung-1027111.html","Khám phá smartphone màn hình gập được đầu tiên của Samsung","Thanh niên &emsp; 6 giờ"],
-                    ["https://vov.vn/cong-nghe/doanh-so-iphone-xs-va-iphone-xr-tham-hai-apple-san-xuat-lai-iphone-x-843717.vov","Doanh số iPhone XS và iPhone XR thảm hại, Apple sản xuất lại iPhone X","VOV &emsp; 6 giờ"],
-                    ["http://vietq.vn/chiec-dien-thoai-thong-minh-nay-cua-lg-se-co-toi-16-camera-d151674.html","Chiếc điện thoại thông minh này của LG sẽ có tới 16 Camera","VietQ &emsp; 13 giờ"],
-                    ["https://news.zing.vn/nhung-tieu-chi-ban-khong-nen-bo-qua-khi-mua-smartphone-2018-post894509.html","Những tiêu chí bạn không nên bỏ qua khi mua smartphone 2018","Zing &emsp; 9 giờ"],
-                    ["http://xahoithongtin.com.vn/san-pham-so/201811/ro-ri-toan-bo-cau-hinh-camera-cua-samsung-galaxy-s10-620501/","Rò rỉ toàn bộ cấu hình camera của Samsung Galaxy S10","XHTT &emsp; 3 giờ"],
-                    ["http://nghenhinvietnam.vn/tin-tuc/cau-hinh-va-thiet-ke-moto-g7-play-xuat-hien-tren-fcc-47033.html","Cấu hình và thiết kế Moto G7 Play xuất hiện trên FCC","Nghe Nhìn VN &emsp; 29 phút"]
-
-                ]
-                for(var i=0;i<thongtin.length;i++)
-                {
-                    document.write(`
-                        <div class="tintuc-info">
-                            <a href="`+thongtin[i][0]+`" target="_blank">
-                                <img src="img/tintuc/tintuc`+(i+1)+`.png">
-                                <h2>` +thongtin[i][1]+`<h2>
-                            </a>
-                            <br/>
-                            <h5>`+thongtin[i][2]+`</h5>
-                        </div>`
-                    )
-                }
-            </script>
+            <div class="tintuc-info">
+                <a href="http://doanhnghiepvn.vn/cong-nghe/danh-gia-smartphone-chip-s660-ram-8-gb-gia-6-99-trieu-tai-viet-nam/2018112603315443" target="_blank">
+                    <img src="img/tintuc/tintuc1.png">
+                    <h2>Đánh giá smartphone chip S660, RAM 8 GB, giá 6,99 triệu tại Việt Nam</h2>
+                </a>
+                <br/>
+                <h5>Doanh ngiệp &emsp;3 giờ</h5>
+            </div>
+            <div class="tintuc-info">
+                <a href="https://thanhnien.vn/cong-nghe/kham-pha-smartphone-man-hinh-gap-duoc-dau-tien-cua-samsung-1027111.html" target="_blank">
+                    <img src="img/tintuc/tintuc2.png">
+                    <h2>Khám phá smartphone màn hình gập được đầu tiên của Samsung</h2>
+                </a>
+                <br/>
+                <h5>Thanh niên &emsp; 6 giờ</h5>
+            </div>
+            <div class="tintuc-info">
+                <a href="https://vov.vn/cong-nghe/doanh-so-iphone-xs-va-iphone-xr-tham-hai-apple-san-xuat-lai-iphone-x-843717.vov" target="_blank">
+                    <img src="img/tintuc/tintuc3.png">
+                    <h2>Doanh số iPhone XS và iPhone XR thảm hại, Apple sản xuất lại iPhone X</h2>
+                </a>
+                <br/>
+                <h5>VOV &emsp; 6 giờ</h5>
+            </div>
+            <div class="tintuc-info">
+                <a href="http://vietq.vn/chiec-dien-thoai-thong-minh-nay-cua-lg-se-co-toi-16-camera-d151674.html" target="_blank">
+                    <img src="img/tintuc/tintuc4.png">
+                    <h2>Chiếc điện thoại thông minh này của LG sẽ có tới 16 Camera</h2>
+                </a>
+                <br/>
+                <h5>VietQ &emsp; 13 giờ</h5>
+            </div>
+            <div class="tintuc-info" style="border-bottom: 0;">
+                <a href="https://news.zing.vn/nhung-tieu-chi-ban-khong-nen-bo-qua-khi-mua-smartphone-2018-post894509.html" target="_blank">
+                    <img src="img/tintuc/tintuc5.png" height="148px" width="224px;">
+                    <h2>Những tiêu chí bạn không nên bỏ qua khi mua smartphone 2018</h2>
+                </a>
+                <br/>
+                <h5>Zing &emsp; 9 giờ</h5>
+            </div> 
 
         </div>
 
@@ -77,7 +95,6 @@
         <script>addFooter();</script>
         
     </div>
-     <!-- ádasdđákjhaskhdkhsadkdbkasjkdjb -->
 
 </body>
 
